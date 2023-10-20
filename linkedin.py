@@ -45,21 +45,33 @@ def __scrape_job(job, wd):
         full_url = job.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
         # the url without all trackers and ref stuff
         full_url = re.search(
-            r'https:\/\/www.linkedin.com\/jobs\/view\/.+\?', full_url).group(0)
-
+            r'https:\/\/.*linkedin.com\/jobs\/view\/.+\?', full_url).group(0)
+    except:
+        full_url = np.nan
+    try:
         company = job.find_element(
             By.CLASS_NAME, 'base-search-card__subtitle').text
+        print(company)
+    except:
+        company = np.nan
+    try:
         list_date = job.find_element(
-            By.CLASS_NAME, 'job-search-card__listdate--new').get_attribute("datetime")
+            By.CLASS_NAME, 'job-search-card__listdate').get_attribute("datetime")
+    except:
+        try:
+            list_date = job.find_element(
+                By.CLASS_NAME, 'job-search-card__listdate--new').get_attribute("datetime")
+        except:
+            list_date = np.nan
+    try:
         company_url = job.find_element(
             By.CSS_SELECTOR, 'h4>a').get_attribute('href')
+    except:
+        company_url = np.nan
+    try:
         location = job.find_element(
             By.CLASS_NAME, 'job-search-card__location').text
     except:
-        full_url = np.nan
-        company = np.nan
-        list_date = np.nan
-        company_url = np.nan
         location = np.nan
 
     time.sleep(3)
