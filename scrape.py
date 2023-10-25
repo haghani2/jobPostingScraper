@@ -11,7 +11,15 @@ from os.path import exists
 # so scraping many URLs at once may be very resource intensive.
 
 # Change to URLs you wish to scrape.
-urls = ['https://www.linkedin.com/jobs/search?keywords=Data%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r604800&position=1&pageNum=0',
+#https://www.linkedin.com/jobs/search?keywords=Data%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r604800&position=1&pageNum=0
+urls = ['https://www.linkedin.com/jobs/search?keywords=Sustainability&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://www.linkedin.com/jobs/search?keywords=Data%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://www.linkedin.com/jobs/search?keywords=Data%20Scientist&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://www.linkedin.com/jobs/search?keywords=Computer%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://ca.linkedin.com/jobs/search?keywords=Mechanical%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://ca.linkedin.com/jobs/search?keywords=Robotics%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://ca.linkedin.com/jobs/search?keywords=Data%20Analyst&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
+		'https://ca.linkedin.com/jobs/search?keywords=Software%20Project%20Manager&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
 ]
 
 if __name__ == '__main__':
@@ -26,6 +34,10 @@ if __name__ == '__main__':
 
 	# save to csv file, appending to it if it exists
 	if exists('linkedin-job-data.csv'):
+		#read csv as old.df
+		old_df = pd.read_csv('linkedin-job-data.csv')
+		#concatenate old.df and new.df and keep unique records
+		df = pd.concat([old_df, df]).drop_duplicates(keep=False)
 		df.to_csv('linkedin-job-data.csv', mode='a', index=False, header=False)
 	else:
 		df.to_csv('linkedin-job-data.csv', mode='w', index=False)	

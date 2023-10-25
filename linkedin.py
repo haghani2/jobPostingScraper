@@ -51,7 +51,6 @@ def __scrape_job(job, wd):
     try:
         company = job.find_element(
             By.CLASS_NAME, 'base-search-card__subtitle').text
-        print(company)
     except:
         company = np.nan
     try:
