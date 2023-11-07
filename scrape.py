@@ -10,6 +10,10 @@ from os.path import exists
 # WARNING: linkedin.py uses multiprocessing to process multiple URLs, 
 # so scraping many URLs at once may be very resource intensive.
 
+# WARNING: if overtime you face an issue with running scrape.py
+# and the error is pointing to the chromedriver, make sure to update
+# chrome browser and download the latest compatible chrome driver and rerun
+
 # Change to URLs you wish to scrape.
 #https://www.linkedin.com/jobs/search?keywords=Data%20Engineer&location=Canada&locationId=&geoId=101174742&f_TPR=r604800&position=1&pageNum=0
 urls = ['https://www.linkedin.com/jobs/search?keywords=Sustainability&location=Canada&locationId=&geoId=101174742&f_TPR=r86400&position=1&pageNum=0',
